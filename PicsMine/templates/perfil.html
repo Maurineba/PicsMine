@@ -1,0 +1,168 @@
+{% extends "homepage.html" %}
+
+{% block titulo %}
+Perfil - {{ usuario.username }}
+{% endblock %}
+
+{% block body %}
+<style >
+  
+  body {
+    background-color: #000000;
+    color: #000;
+  }
+
+  .container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    margin-top: -1%;
+  }
+
+  .foto-container {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    display: inline-block;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto 20px;
+    height: 40vh;
+    transition: all 0.3s;
+    z-index: 1;
+  }
+
+  .foto-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .foto-container .btn-delete {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border: 2px solid black;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 20;
+}
+
+.foto-container:hover .btn-delete {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.05);
+}
+
+.btn-delete img {
+  width: 20px;
+  height: 20px;
+}
+
+  .foto-container:hover .btn-delete {
+    opacity: 1;
+    }
+
+  .foto-container form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 101;
+  }
+
+</style>
+
+<body>
+{% include "barranav.html" %}
+<div class="container">
+
+{% if form %}
+  <form class="bloco-add-img" method="POST" enctype="multipart/form-data">
+    {{ form.csrf_token }}
+    <h2 style="font-family: 'Poppins', sans-serif;
+    color: #000;">{{ usuario.username }} - Enviar foto</h2>
+
+    <div class="bloco-arquivo">
+      <label for="foto" class="botao-arquivo">
+        Escolher arquivo
+        {{ form.foto(class="input-arquivo", id="foto") }}
+      </label>
+      <span id="imagem-arquivo" class=""></span>
+    </div>
+
+    {{ form.botao_conf(class="botao-login") }}
+  </form>
+{% else %}
+  <div  style="font-family: 'Poppins', sans-serif;
+  color: #000;" class="bloco-add-img">
+    <h2>{{ usuario.username }} - Ver Perfil</h2>
+  </div>
+{% endif %}
+
+<div class="conteudo">
+  {% for foto in usuario.fotos %}
+  <div class="foto-container">
+    <img src="{{ url_for('static', filename='fotos_posts/' + foto.image) }}" alt="Foto">
+    
+    {% if current_user.is_authenticated and current_user.id == foto.id_usuario %}
+
+    <form method="POST" action="{{ url_for('deletar_foto', foto_id=foto.id) }}"
+          onsubmit="return confirm('Tem certeza que deseja deletar esta foto?')">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+      <button type="submit" class="btn-delete" aria-label="Deletar foto">
+        <img src="https://cdn-icons-png.flaticon.com/512/1214/1214428.png" alt="Excluir" style="width: 20px; height: 20px;">
+
+      </button>
+    </form>
+    {% endif %}
+  </div>
+  {% endfor %}
+</div>
+
+<script>
+  // Script para o input de arquivo
+  let input = document.getElementById("foto");
+  let imagemArquivo = document.getElementById("imagem-arquivo");
+
+  input.addEventListener("change", () => {
+    let inputImagem = document.querySelector("input[type=file]").files[0];
+    imagemArquivo.classList.add("visivel");
+    imagemArquivo.innerText = inputImagem.name;
+  });
+
+  // Script para melhorar a experiência em dispositivos touch
+  document.querySelectorAll('.foto-container').forEach(container => {
+    container.addEventListener('touchstart', function() {
+      this.classList.add('hover-active');
+    });
+    
+    container.addEventListener('touchend', function() {
+      setTimeout(() => this.classList.remove('hover-active'), 1000);
+    });
+    
+    // Feedback visual durante o delete
+    const form = container.querySelector('form');
+    if (form) {
+      form.addEventListener('submit', function() {
+        const btn = this.querySelector('.btn-delete');
+        if (btn) {
+          btn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i>';
+          btn.style.pointerEvents = 'none';
+        }
+      });
+    }
+  });
+</script>
+</body>
+{% endblock %}

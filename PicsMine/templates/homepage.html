@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Exo:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap" rel="stylesheet">
+
+
+    <title>
+        {% block titulo %}
+        PicsMine
+        {% endblock %}
+    </title>
+  </head>
+
+{% block body %}
+  <body class="overflow-hidden {{ body_class|default('') }}">
+
+      <video autoplay muted loop id="bg-video">
+        <source src="{{ url_for('static', filename='videoSite/planoFundo.mp4') }}" type="video/mp4">
+  Seu navegador não suporta vídeo em HTML5.
+      </video>
+
+
+    <div class="container">
+      
+      <div class ="slogan">
+        <h2 class="tituloSlogan">PicsMine</h2>
+        <p class="textoSlogan">Where your moments live forever.</p>
+      </div>
+
+      <div class="container-popup">
+
+          {% block formulario %}
+
+        <form method="POST" class="popup">
+            {{ form.csrf_token }}
+
+            <div class="logo-site">
+              <a href="index.html">
+                <img src="{{ url_for('static', filename='fotos_site/logoPreta.png') }}" alt="Logo do site" width="150">
+              </a>
+            </div>
+
+          <div class="div-input">
+              {{ form.email.label(class="label") }}
+                {{ form.email(class="input") }}
+          </div>
+
+          <div class="div-input">
+            {{ form.senha.label(class="label") }}
+            {{ form.senha(class="input") }}
+          </div>
+
+          <div class="div-botao">
+              {{ form.botao_conf(class="botao-login") }}
+            <a href="{{ url_for('criarconta') }}" class="link-criarconta">Não tem uma conta? Crie aqui</a>
+          </div>
+
+        </form>
+          {% endblock %}
+
+      </div>
+    </div>
+  </body>
+{% endblock %}
+</html>

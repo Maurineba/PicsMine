@@ -1,0 +1,428 @@
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: #f0f0f0;
+  background-color: #000; 
+}
+
+.feed-fundo {
+  background-color: #ffffff; /* ou a cor que quiser */
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  padding: 15px;
+  margin-top: -1%;
+}
+
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+body.login_fundo {
+  background-image: url("../fotos_site/fundo-login.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Navegação */
+nav {
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0%;
+}
+
+.tituloBemvindo {
+  color: black;
+}
+
+
+
+.div-input{
+  color: black;
+}
+
+.logo-pinterest {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  column-gap: 4px;
+}
+
+.logo-site {
+ 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1; 
+  z-index: 10;
+  margin-top: 10px;
+}
+
+.logo-site img{
+  width: 200px; 
+  height: auto;
+  margin-top: -27px;
+}
+
+h1 {
+  color: #c00;
+  font-size: 20px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  display: inline;
+}
+
+.restante-nav {
+  display: flex;
+  align-items: center;
+  column-gap: 30px;
+  width: fit-content;
+  margin-top: -1%;
+  margin-left: 1%;
+  margin-right: 2.6%;
+}
+
+.link-nav {
+ font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #ffffff;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  transition: all 0.2s ease-in-out;
+  
+}
+
+.link-nav:hover {
+  text-decoration: underline;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  position: relative;
+  min-height: 100vh;
+  z-index: 1;
+  
+  
+}
+
+.container-login {
+  padding-bottom: 100px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.container-popup {
+  position: fixed;
+  top: 0;
+  left: 0.5%;
+  width: 45%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+}
+
+.popup {
+  width: 350px;
+  height: auto;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 20px;
+  padding: 35px;
+  border-radius: 32px;
+  background-color: rgba(255, 255, 255);
+  backdrop-filter: blur(1px); 
+}
+
+.slogan {
+  position: absolute;
+  margin-top: 100px;
+  margin-left: 56%;
+  width: 700px;
+  height: auto;
+  color: white;
+}
+
+.tituloSlogan {
+  font-family: 'Rubik Mono One', sans-serif;
+  font-size: 62px;
+  letter-spacing: 2px;
+  margin-top: 25%;
+}
+
+.textoSlogan {
+  font-size: 18px; 
+  font-family: 'Exo', sans-serif;
+  margin-top: 10px;
+  margin-left: 10%;
+}
+
+.div-input {
+  font-family: "Exo", sans-serif;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 5px;
+}
+
+.div-botao {
+  
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 5px;
+  margin-top: 10px;
+}
+
+.label {
+  margin-right: auto;
+  margin-left: 15px;
+  font-size: 15px;
+}
+
+.input {
+  width: 100%;
+  font-size: 16px;
+  padding: 15px;
+  border: 2px solid #cdcdcd;
+  border-radius: 20px;
+  box-sizing: border-box;
+  font-family: Montserrat;
+}
+
+.botao-login {
+  font-family: "Exo", sans-serif;
+  border-radius: 25px;
+  padding: 15px 20px;
+  width: 100%;
+  border: 0;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #000000;
+  color: #fff;
+}
+
+.botao-login:hover {
+  background-color: #414141;
+}
+
+.link-criarconta {
+  font-family: "Exo", sans-serif;
+  color: #000000;
+  text-decoration: none;
+}
+
+.link-criarconta:hover {
+  color: #333;
+  text-decoration: underline;
+}
+
+.botao-perfil a {
+  color: white;
+  padding: 10px 20px;
+  border-radius: 12px;
+}
+
+.botao-perfil a:hover {
+  text-decoration: underline;
+}
+
+/* Galeria de Fotos */
+.conteudo {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  width: 100%;
+  max-width: 100vw;
+  column-gap: 10px;
+  row-gap: 30px;
+  padding: 15px;
+  box-sizing: border-box;
+}
+
+.bloco-add-img {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 10px;
+}
+
+.bloco-input-botao {
+  display: flex;
+  column-gap: 20px;
+}
+
+/* Upload de Fotos */
+.bloco-arquivo {
+  background-color: #eee;
+  padding: 10px 20px;
+  border-radius: 55px;
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+}
+
+.botao-arquivo {
+  padding: 5px 10px;
+  border-radius: 15px;
+  border: 0;
+  background-color: #333;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.input-arquivo {
+  display: none;
+}
+
+#imagem-arquivo {
+  display: none;
+}
+
+#imagem-arquivo.visivel {
+  display: inline-block;
+}
+
+.bloco-add-img .botao-login {
+  width: auto;
+}
+
+.foto-container {
+  position: relative;
+  border-radius: 15px;
+  overflow: hidden;
+  display: inline-block;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto 20px;
+  height: 40vh;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
+}
+
+.foto-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+  position: relative;
+}
+
+.foto-container:hover {
+  transform: scale(1.04);
+  z-index: 2;
+}
+
+.foto-container:hover img {
+  transform: scale(1.02);
+  filter: brightness(0.95);
+}
+
+/* Botão de Deletar */
+.btn-delete {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 40px;
+  height: 40px;
+  background-color: #e60023;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 20;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  font-size: 16px;
+}
+
+.foto-container:hover .btn-delete {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.foto-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 30%;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.4) 0%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 5;
+}
+
+.foto-container:hover::after {
+  opacity: 1;
+}
+
+.foto-container form {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 25;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+img {
+  width: 100%;
+}
+
+.bloco-imagem img {
+  border-radius: 20px;
+  height: 40vh;
+  object-fit: cover;
+}
+
+.bloco-imagem {
+  transition: transform 0.3s ease;
+  z-index: 1;
+}
+
+.bloco-imagem:hover {
+  transform: scale(1.02);
+  z-index: 2;
+}
+
+.bg-imagem-pinterest {
+  width: 100%;
+  position: fixed;
+  top: 50vh;
+}
+
+#bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+}

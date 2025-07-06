@@ -1,0 +1,43 @@
+{% extends "homepage.html" %}
+
+{% block titulo %}
+FakePinterest - Criar Conta
+{% endblock %}
+
+ {% block formulario %}
+
+        <form method="POST" class="popup">
+            {{ form.csrf_token }}
+          
+          <h2 style="color: black;
+              font-family: 'Poppins', sans-serif;"
+              >Bem-vindo(a) ao PicsMine</h2>
+
+          <div class="div-input">
+              {{ form.email.label(class="label") }}
+              {{ form.email(class="input") }}
+          </div>
+
+            <div class="div-input">
+              {{ form.username.label(class="label") }}
+                {{ form.username(class="input") }}
+          </div>
+
+          <div class="div-input">
+            {{ form.criar_senha.label(class="label") }}
+            {{ form.criar_senha(class="input") }}
+          </div>
+
+          <div class="div-input">
+            {{ form.conf_senha.label(class="label") }}
+            {{ form.conf_senha(class="input") }}
+          </div>
+
+
+          <div class="div-botao">
+              {{ form.botao_conf(class="botao-login") }}
+            <a href="{{ url_for('homepage') }}" class="link-criarconta">Já tem uma conta? Faça Login</a>
+          </div>
+
+        </form>
+          {% endblock %}
