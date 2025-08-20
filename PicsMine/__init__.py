@@ -1,4 +1,4 @@
-from flask import Flask # importando o Flask que é a biblioteca quen os permite fazer site com python
+from flask import Flask 
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_bcrypt import Bcrypt
@@ -15,5 +15,5 @@ login_manager = LoginManager(app)
 login_manager.login_view = "homepage"
 csrf = CSRFProtect(app)
 
-from PicsMine import routes
-from PicsMine import models
+from PicsMine.routes import routes
+from PicsMine.models import models
