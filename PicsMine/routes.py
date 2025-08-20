@@ -1,30 +1,28 @@
  
-from flask import redirect, flash, render_template, Blueprint, url_for
+from flask import redirect, flash, render_template, session, url_for
 from PicsMine import app, database, bcrypt
 from flask_login import login_required, login_user, logout_user, current_user
-from PicsMine.forms.forms import FormCriarConta, FormLogin, FormFoto
-from PicsMine.models.models import Usuario, Foto
+from PicsMine.forms import FormCriarConta, FormLogin, FormFoto
+from PicsMine.models import Usuario, Foto
 import os
 from werkzeug.utils import secure_filename
 
-routes = Blueprint('routes', __name__)
-
-@routes.route("/", methods=["GET", "POST"])
+@app.route("/", methods=["GET", "POST"])
 def index():
-    return redirect(url_for("routes.homepage"))
+    return redirect(url_for("homepage"))
 
 
-@routes.route("/homepage", methods=["GET","POST"])  
+@app.route("/homepage", methods=["GET","POST"])  
 def homepage(): 
     form_login = FormLogin()
     if form_login.validate_on_submit():
         usuario = Usuario.query.filter_by(email=form_login.email.data).first()
         if usuario and bcrypt.check_password_hash(usuario.senha, form_login.senha.data):    
             login_user(usuario)
-            return redirect(url_for("routes.feed", id_usuario=usuario.id))
+            return redirect(url_for("feed", id_usuario=usuario.id))
     return render_template("homepage.html", form=form_login, body_class="login_fundo") 
 
-@routes.route("/criarconta", methods=["GET", "POST"])
+@app.route("/criarconta", methods=["GET", "POST"])
 def criarconta():
     formcriarconta = FormCriarConta()
 
@@ -46,7 +44,7 @@ def criarconta():
     return render_template("criarconta.html", form=formcriarconta, body_class="login_fundo")
 
 
-@routes.route("/perfil/<id_usuario>", methods=["GET", "POST"]) 
+@app.route("/perfil/<id_usuario>", methods=["GET", "POST"]) 
 def perfil(id_usuario):
     
 
@@ -78,21 +76,21 @@ def perfil(id_usuario):
         return render_template("perfil.html", usuario=usuario, form=None)
 
 
-@routes.route("/logout")
+@app.route("/logout")
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for("routes.homepage"))
+    return redirect(url_for("homepage"))
 
 
-@routes.route("/feed")
+@app.route("/feed")
 @login_required
 def feed():
     fotos = Foto.query.order_by(Foto.creation_date).all()
     return render_template("feed.html", fotos=fotos)
 
 
-@routes.route('/deletar_foto/<int:foto_id>', methods=['POST'])
+@app.route('/deletar_foto/<int:foto_id>', methods=['POST'])
 @login_required
 def deletar_foto(foto_id):
     

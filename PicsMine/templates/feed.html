@@ -8,7 +8,7 @@
     <div class="container feed-fundo">
       <div class="conteudo">
           {% for foto in fotos %}
-            <a href="{{ url_for('perfil', id_usuario=foto.id_usuario) }}" class="bloco-imagem">
+            <a href="{{ url_for('routes.perfil', id_usuario=foto.id_usuario) }}" class="bloco-imagem">
               <img src="{{ url_for('static', filename='fotos_posts/{}'.format(foto.image)) }}" />
             </a>
           {% endfor %}

@@ -117,7 +117,7 @@ Perfil - {{ usuario.username }}
     
     {% if current_user.is_authenticated and current_user.id == foto.id_usuario %}
 
-    <form method="POST" action="{{ url_for('deletar_foto', foto_id=foto.id) }}"
+    <form method="POST" action="{{ url_for('routes.deletar_foto', foto_id=foto.id) }}"
           onsubmit="return confirm('Tem certeza que deseja deletar esta foto?')">
       <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
       <button type="submit" class="btn-delete" aria-label="Deletar foto">
